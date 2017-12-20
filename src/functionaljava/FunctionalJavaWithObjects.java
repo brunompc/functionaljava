@@ -51,8 +51,10 @@ public class FunctionalJavaWithObjects {
         students.add(s4);
         System.out.println("Average all students: " + averageFinalGrade(students));
         System.out.println("Average approved students: " + averageFinalGradeOfApprovedStudents(students));
-        System.out.println("Average approved students: " + countApprovedStudents(students));
+        System.out.println("Number approved students: " + countApprovedStudents(students));
+        System.out.println("Number failed students: " + countFailedStudents(students));
         System.out.println("All Class Approved: " + allStudentsApproved(students));
+        
     }
    
 }
