@@ -2,6 +2,7 @@
 package functionaljava;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -31,11 +32,14 @@ public class FunctionalJavaWithObjects {
     }
     
     static boolean allStudentsApproved(List<Student> students) {
+        // Similar to "every" in Common Lisp
         return students.stream().allMatch(s -> s.isApproved());
     }
 
     // TODO: give a more generic name OR refactor
+    // A Demo to Rule them All
     static void demoStudentsInfo() {
+        
         List<Student> students = new ArrayList<>();
         Student s1 = new Student ();
         s1.setTestGrades(10, 10);
@@ -49,6 +53,9 @@ public class FunctionalJavaWithObjects {
         students.add(s2);
         students.add(s3);
         students.add(s4);
+        
+        System.out.println(Arrays.toString(students.toArray()));
+        
         System.out.println("Average all students: " + averageFinalGrade(students));
         System.out.println("Average approved students: " + averageFinalGradeOfApprovedStudents(students));
         System.out.println("Number approved students: " + countApprovedStudents(students));

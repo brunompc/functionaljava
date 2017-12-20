@@ -30,4 +30,9 @@ public class Student {
     public int getFinalGrade() {
         return (grade1 + grade2) / 2;
     }
+    
+    @Override
+    public String toString() {
+        return grade1 + " " + grade2 + " " + getFinalGrade() + " " + isApproved();
+    }
 }
