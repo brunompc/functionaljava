@@ -110,6 +110,10 @@ public class FunctionalJava {
         int sum = sumAll(numbers3);
         System.out.println("Contents to Sum:" + Arrays.toString(numbers3.toArray()));
         System.out.println("Sum: " + sum);
+        
+        // Functional Java with Objects demos
+        FunctionalJavaWithObjects.demoStudentsInfo();
+        
     }
     
 }
