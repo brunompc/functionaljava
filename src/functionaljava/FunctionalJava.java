@@ -33,6 +33,16 @@ public class FunctionalJava {
         return numbers.stream().map(n -> n / d).collect(Collectors.toList());
     }
     
+    // Find the max() element of a List<Integer>
+    static Integer max(List<Integer> numbers) {
+        return numbers.stream().max((n1, n2) -> Integer.compare(n1, n2)).get();
+    }
+    
+    // Find the min() element
+    static Integer min(List<Integer> numbers) {
+        return numbers.stream().min((n1, n2) -> Integer.compare(n1, n2)).get();
+    }
+    
     public static void main(String[] args) {
 
         // multiplyBy
@@ -71,6 +81,21 @@ public class FunctionalJava {
         System.out.println("Before:" + Arrays.toString(numbers1.toArray()));
         addSuffix(words, " Lover");
         System.out.println("After:" + Arrays.toString(numbers2.toArray()));
+        
+        // max and min
+        List<Integer> grades = new ArrayList<>();
+        grades.add(10);
+        grades.add(12);
+        grades.add(13);
+        grades.add(15);
+        grades.add(10);
+        grades.add(19);
+        grades.add(10);
+        System.out.println("Grades:" + Arrays.toString(grades.toArray()));
+        int max = max(grades);
+        int min = min(grades);
+        System.out.println("Max grade: " + max);
+        System.out.println("Min grade: " + min);
         
     }
     
