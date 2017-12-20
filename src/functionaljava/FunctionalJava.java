@@ -43,6 +43,11 @@ public class FunctionalJava {
         return numbers.stream().min((n1, n2) -> Integer.compare(n1, n2)).get();
     }
     
+    // Sum the elements of a List<Integer>
+    static Integer sumAll(List<Integer> numbers) {
+        return numbers.stream().mapToInt(n -> n).sum();
+    }
+    
     public static void main(String[] args) {
 
         // multiplyBy
@@ -97,6 +102,14 @@ public class FunctionalJava {
         System.out.println("Max grade: " + max);
         System.out.println("Min grade: " + min);
         
+        // sumAll
+        List<Integer> numbers3 = new ArrayList<>();
+        numbers3.add(1);
+        numbers3.add(5);
+        numbers3.add(11);
+        int sum = sumAll(numbers3);
+        System.out.println("Contents to Sum:" + Arrays.toString(numbers3.toArray()));
+        System.out.println("Sum: " + sum);
     }
     
 }
