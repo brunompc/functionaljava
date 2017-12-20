@@ -6,9 +6,13 @@ package functionaljava;
  * @author BC
  */
 public class Student {
+    private String name;
     private int grade1;
     private int grade2;
     
+    public Student(String name) {
+        this.name = name;
+    }
     public void setTestGrades(int grade1, int grade2) {
         this.grade1 = grade1;
         this.grade2 = grade2;
@@ -35,4 +39,10 @@ public class Student {
     public String toString() {
         return grade1 + " " + grade2 + " " + getFinalGrade() + " " + isApproved();
     }
+    
+    public void display() {
+        System.out.println("Name: " + name);
+    }
+    
+    
 }

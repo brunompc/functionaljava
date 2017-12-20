@@ -4,6 +4,7 @@ package functionaljava;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
@@ -60,18 +61,36 @@ public class FunctionalJavaWithObjects {
         return maxFinalGrade(students, (Student s) -> !s.isApproved());
     }
     
+    // Iteration with forEach (and Consumers)
+    static void displayStudentsPersonalInfo(List<Student> students) {
+        // forEach receives a "Consumer", which is a function that receives a 
+        // single argument and does not return anything
+        
+        // A simple one-line Consumer
+        students.forEach(Student::display);
+        
+        // A Consumer with multiple lines, declared using a block
+        Consumer<Student> c = (Student s) -> 
+        {
+            s.display();
+            System.out.println("Grade: " + s.getFinalGrade());
+        };
+        
+        students.forEach(c);
+    }
+    
     // A Demo to Rule them All
     static void demoStudentsInfo() {
         
         List<Student> students = new ArrayList<>();
         
-        Student s1 = new Student ();
+        Student s1 = new Student ("B");
         s1.setTestGrades(10, 10);
-        Student s2 = new Student ();
+        Student s2 = new Student ("M");
         s2.setTestGrades(10, 15);
-        Student s3 = new Student ();
+        Student s3 = new Student ("P");
         s3.setTestGrades(8, 12);
-        Student s4 = new Student ();
+        Student s4 = new Student ("C");
         s4.setTestGrades(8, 11);
         
         students.add(s1);
@@ -89,6 +108,7 @@ public class FunctionalJavaWithObjects {
         System.out.println("Max final grade (Approved): " + maxFinalGradeOfApprovedStudents(students));
         System.out.println("Max final grade (Failed): " + maxFinalGradeOfFailedStudents(students));
         
+        displayStudentsPersonalInfo(students);
     }
    
 }
