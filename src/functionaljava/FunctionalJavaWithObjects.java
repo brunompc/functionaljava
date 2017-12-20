@@ -4,6 +4,7 @@ package functionaljava;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * These are some demos of Functional Java constructs applied over Lists
@@ -36,11 +37,34 @@ public class FunctionalJavaWithObjects {
         return students.stream().allMatch(s -> s.isApproved());
     }
 
-    // TODO: give a more generic name OR refactor
+    // This method will receive a Predicate (function) that says if the Student
+    // must be considered
+    static int maxFinalGrade(List<Student> students, Predicate<Student> relevantStudent) {
+        return students.stream().filter(s -> relevantStudent.test(s)).mapToInt(s -> s.getFinalGrade()).max().getAsInt();
+    }
+    
+    // First usage 
+    // (the Predicate is a method from the Student class)
+    static int maxFinalGradeOfApprovedStudents(List<Student> students) {
+        return maxFinalGrade(students, Student::isApproved);
+    }
+    
+    // Second usage
+    // Declare the Predicate "on the fly"
+    // We could also assign it to a variable:
+    //   static Predicate<Student> isFailedStudent = (Student s) -> !s.isApproved();
+    // and then use the variable in the call:
+    //   maxFinalGrade(students, isFailedStudent);
+    
+    static int maxFinalGradeOfFailedStudents(List<Student> students) {
+        return maxFinalGrade(students, (Student s) -> !s.isApproved());
+    }
+    
     // A Demo to Rule them All
     static void demoStudentsInfo() {
         
         List<Student> students = new ArrayList<>();
+        
         Student s1 = new Student ();
         s1.setTestGrades(10, 10);
         Student s2 = new Student ();
@@ -49,6 +73,7 @@ public class FunctionalJavaWithObjects {
         s3.setTestGrades(8, 12);
         Student s4 = new Student ();
         s4.setTestGrades(8, 11);
+        
         students.add(s1);
         students.add(s2);
         students.add(s3);
@@ -61,6 +86,8 @@ public class FunctionalJavaWithObjects {
         System.out.println("Number approved students: " + countApprovedStudents(students));
         System.out.println("Number failed students: " + countFailedStudents(students));
         System.out.println("All Class Approved: " + allStudentsApproved(students));
+        System.out.println("Max final grade (Approved): " + maxFinalGradeOfApprovedStudents(students));
+        System.out.println("Max final grade (Failed): " + maxFinalGradeOfFailedStudents(students));
         
     }
    
