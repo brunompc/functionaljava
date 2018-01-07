@@ -4,6 +4,8 @@ package functionaljava;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -114,6 +116,31 @@ public class FunctionalJava {
         // Functional Java with Objects demos
         FunctionalJavaWithObjects.demoStudentsInfo();
         
+        // Call getRandomNumbers to get numbers with some properties
+        // use a Lambda to indicate if the number is "valid"
+
+        // Lambda will return true for Even numbers
+        List<Integer> evenNumbers = getRandomNumbers(3, 0, 15, n -> (n % 2 == 0));
+        System.out.println("Even: " + Arrays.toString(evenNumbers.toArray()));
+        
+        // Lambda will return true for numbers that are not multiples of 3 or 5
+       // (i.e. excludes 3, 5, 6, 9, 10, 12, 15, etc.)
+        List<Integer> otherNumbers = getRandomNumbers(3, 0, 15, n -> (n % 3 != 0 && n % 5 != 0));
+        System.out.println("Exclude multiples of 3 and 5: " + Arrays.toString(otherNumbers.toArray()));
+    }
+ 
+    public static List<Integer> getRandomNumbers(int count, int min, int max, Function<Integer, Boolean> validateNumber) {
+        List<Integer> result = new ArrayList<>();
+        int nr = 0;
+        Random generator = new Random();
+        while(nr < count) {
+            int temp = min + generator.nextInt(max);
+            if(validateNumber.apply(temp)) {
+                result.add(temp);
+                nr++;
+            }
+        }
+        return result;
     }
     
 }
