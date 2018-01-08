@@ -3,6 +3,7 @@ package functionaljava;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -69,11 +70,12 @@ public class FunctionalJavaWithObjects {
         // A simple one-line Consumer
         students.forEach(Student::display);
         
+        System.out.println("-----");
         // A Consumer with multiple lines, declared using a block
         Consumer<Student> c = (Student s) -> 
         {
             s.display();
-            System.out.println("Grade: " + s.getFinalGrade());
+            System.out.println("  Grade: " + s.getFinalGrade());
         };
         
         students.forEach(c);
@@ -108,6 +110,16 @@ public class FunctionalJavaWithObjects {
         System.out.println("Max final grade (Approved): " + maxFinalGradeOfApprovedStudents(students));
         System.out.println("Max final grade (Failed): " + maxFinalGradeOfFailedStudents(students));
         
+        System.out.println("--- Sort students by grade (ASC) ---");
+        // Sort students by grade (ASC) using Lambda
+        Collections.sort(students, (sA, sB) -> sA.getFinalGrade() - sB.getFinalGrade());
+        displayStudentsPersonalInfo(students);
+        
+        System.out.println("---");
+        System.out.println("--- Sort students by name (ASC) ---");
+        
+        // Sort students by name (ASC) using Lambda
+        Collections.sort(students, (sA, sB) -> sA.getName().compareTo(sB.getName()));
         displayStudentsPersonalInfo(students);
     }
    
