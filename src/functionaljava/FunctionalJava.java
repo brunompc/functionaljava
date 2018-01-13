@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -124,9 +125,13 @@ public class FunctionalJava {
         System.out.println("Even: " + Arrays.toString(evenNumbers.toArray()));
         
         // Lambda will return true for numbers that are not multiples of 3 or 5
-       // (i.e. excludes 3, 5, 6, 9, 10, 12, 15, etc.)
+        // (i.e. excludes 3, 5, 6, 9, 10, 12, 15, etc.)
         List<Integer> otherNumbers = getRandomNumbers(3, 0, 15, n -> (n % 3 != 0 && n % 5 != 0));
         System.out.println("Exclude multiples of 3 and 5: " + Arrays.toString(otherNumbers.toArray()));
+        
+        // Storing a Lambda in a variable
+        Function<Integer, Boolean> isEvenNumber = (n) -> n % 2 == 0;
+        getNumbers(2, isEvenNumber);
     }
  
     public static List<Integer> getRandomNumbers(int count, int min, int max, Function<Integer, Boolean> validateNumber) {
