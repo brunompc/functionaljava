@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -132,6 +133,16 @@ public class FunctionalJava {
         // Storing a Lambda in a variable
         Function<Integer, Boolean> isEvenNumber = (n) -> n % 2 == 0;
         getNumbers(2, isEvenNumber);
+        
+        // Enter the BiFunction
+        int res1 = performIntCalculation(10, 20, (n1, n2) -> n1 + n2);
+        int res2 = performIntCalculation(10, 20, (n1, n2) -> n1 - n2);
+        int res3 = performIntCalculation(10, 20, (n1, n2) -> n1 * n2);
+        int res4 = performIntCalculation(10, 20, (n1, n2) -> n1 / n2);
+        System.out.println("Res1: " + res1);
+        System.out.println("Res2: " + res2);
+        System.out.println("Res3: " + res3);
+        System.out.println("Res4: " + res4);
     }
  
     public static List<Integer> getRandomNumbers(int count, int min, int max, Function<Integer, Boolean> validateNumber) {
@@ -148,4 +159,27 @@ public class FunctionalJava {
         return result;
     }
     
+    // getNumbers(3, (n) -> n % 2)
+    // getNumbers(3, (n) -> n >= 18);
+    public static List<Integer> getNumbers(int amount, Function<Integer, Boolean> validateNumber) {
+        Scanner sc = new Scanner(System.in);
+        int count = 0;
+        List<Integer> result = new ArrayList<>();
+        while(count < amount) {
+            System.out.println("Insert an number:");
+            int nr = sc.nextInt();
+            if(validateNumber.apply(nr)) {
+                result.add(nr);
+                count++;
+            }
+            else {
+                System.out.println("Invalid number. Try again...");
+            }
+        }
+        return result;
+    }
+    
+    static Integer performIntCalculation(int a, int b, BiFunction<Integer, Integer, Integer> operator) {
+        return operator.apply(a, b);
+    }
 }
