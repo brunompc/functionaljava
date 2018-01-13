@@ -143,6 +143,19 @@ public class FunctionalJava {
         System.out.println("Res2: " + res2);
         System.out.println("Res3: " + res3);
         System.out.println("Res4: " + res4);
+     
+        // Array of Functions
+        Function<Integer, Integer>[] functions = new Function[3];
+        functions[0] = (n) -> n + 1;
+        functions[1] = (n) -> n * 2;
+        functions[2] = (n) -> n + 3;
+        // (1 + 1) * 2 + 3 = 7
+        int res5 = performIntCalculation(1, functions);
+        System.out.println("Res5: " + res5);
+        // (2 + 1) * 2 + 3 = 9
+        int res6 = performIntCalculation(2, functions);
+        System.out.println("Res6: " + res6);
+        
     }
  
     public static List<Integer> getRandomNumbers(int count, int min, int max, Function<Integer, Boolean> validateNumber) {
@@ -182,4 +195,13 @@ public class FunctionalJava {
     static Integer performIntCalculation(int a, int b, BiFunction<Integer, Integer, Integer> operator) {
         return operator.apply(a, b);
     }
+
+    static Integer performIntCalculation(int a, Function<Integer, Integer>[] operators) {
+        Function<Integer, Integer> operator = (n) -> n;
+        for(Function f : operators) {
+            operator = operator.andThen(f);
+        }
+        return operator.apply(a);
+    }
+    
 }
