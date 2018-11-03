@@ -23,6 +23,7 @@ public class Student {
     // - At least 8 in each test
     // - At least 10 in the final grade (non-rounded average)
     //  (Which means that 9.5 is not enough :p)
+    //  (e.g. 8 and 12 is ok, but 8 and 11 is not)
     //
     public boolean isApproved() {
         return grade1 >= 8 && grade2 >= 8 && getFinalGrade() >= 10;
@@ -37,7 +38,7 @@ public class Student {
     
     @Override
     public String toString() {
-        return grade1 + " " + grade2 + " " + getFinalGrade() + " " + isApproved();
+        return name + " " + grade1 + " " + grade2 + " " + getFinalGrade() + " " + isApproved();
     }
     
     public void display() {
@@ -48,5 +49,12 @@ public class Student {
         return name;
     }
     
+    public int getGrade1() {
+        return grade1;
+    }
+    
+    public int getGrade2() {
+        return grade2;
+    }
     
 }

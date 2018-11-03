@@ -121,6 +121,18 @@ public class FunctionalJavaWithObjects {
         // Sort students by name (ASC) using Lambda
         Collections.sort(students, (sA, sB) -> sA.getName().compareTo(sB.getName()));
         displayStudentsPersonalInfo(students);
+        
+        students.stream()
+                .filter(s -> s.isApproved())
+                .sorted((sA, sB) -> sA.getName().compareTo(sB.getName()))
+                .forEach(s -> System.out.println(s.getName() + " " + s.getFinalGrade()));
+
+     
+        // Students that failed although they have the minimum intermediate test grades
+        System.out.println("Failed but have min intermediate grades");
+        students.stream()
+                .filter(s -> !s.isApproved() && s.getGrade1() >= 8 && s.getGrade2() >= 8)
+                .forEach(s -> System.out.println(s.toString()));
     }
-   
+
 }
