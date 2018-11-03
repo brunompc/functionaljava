@@ -13,6 +13,13 @@ public class Student {
     public Student(String name) {
         this.name = name;
     }
+    
+    public Student(String name, int grade1, int grade2) {
+        this.name = name;
+        this.grade1 = grade1;
+        this.grade2 = grade2;
+    }
+    
     public void setTestGrades(int grade1, int grade2) {
         this.grade1 = grade1;
         this.grade2 = grade2;

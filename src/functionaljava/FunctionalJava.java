@@ -117,6 +117,9 @@ public class FunctionalJava {
         
         // Functional Java with Objects demos
         FunctionalJavaWithObjects.demoStudentsInfo();
+
+        // Functional Java with input from Files
+        FunctionalJavaWithFiles.demoReadFile();
         
         // Call getRandomNumbers to get numbers with some properties
         // use a Lambda to indicate if the number is "valid"
